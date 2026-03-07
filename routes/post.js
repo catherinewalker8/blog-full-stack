@@ -9,13 +9,10 @@ const { authMiddleware } = require("../utils/auth");
 // Route to add a new post
 app.post("/", authMiddleware, async (req, res) => {
   try {
-    const { title, content, postedBy } = req.body;
-    const post = await Post.create({ 
-        title: req.body.title,
-        content: req.body.content,
-        postedBy: req.user.data.username, 
-        userId: req.user.data.id,         
-        categoryId: req.body.categoryId});
+    const { title, content, categoryId } = req.body;
+    const post = await Post.create({title, content, categoryId, 
+        postedBy: req.user.username, 
+        userId: req.user.id});
     res.status(201).json(post);
   } catch (error) {
     res.status(500).json({ error: "Error adding post" });
@@ -43,11 +40,14 @@ app.get("/:id", async (req, res) => {
 });
 
 // Route to update a post
-app.put("/:id", async (req, res) => {
+app.put("/:id", authMiddleware, async (req, res) => {
   try {
-    const { title, content, postedBy } = req.body;
+    const { title, content, categoryId } = req.body;
     const post = await Post.update(
-      { title, content, postedBy },
+      { title, content, categoryId,
+        postedBy: req.user.username, 
+        userId: req.user.id
+      },
       { where: { id: req.params.id } }
     );
     res.json(post);
@@ -57,7 +57,7 @@ app.put("/:id", async (req, res) => {
 });
 
 // Route to delete a post
-app.delete("/:id", async (req, res) => {
+app.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const post = await Post.destroy({ where: { id: req.params.id } });
     res.json(post);
