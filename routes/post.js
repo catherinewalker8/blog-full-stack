@@ -4,12 +4,18 @@ const app = require("express").Router();
 // import the models
 const { Post } = require("../models/index");
 
+const { authMiddleware } = require("../utils/auth");
+
 // Route to add a new post
-app.post("/", async (req, res) => {
+app.post("/", authMiddleware, async (req, res) => {
   try {
     const { title, content, postedBy } = req.body;
-    const post = await Post.create({ title, content, postedBy });
-
+    const post = await Post.create({ 
+        title: req.body.title,
+        content: req.body.content,
+        postedBy: req.user.data.username, 
+        userId: req.user.data.id,         
+        categoryId: req.body.categoryId});
     res.status(201).json(post);
   } catch (error) {
     res.status(500).json({ error: "Error adding post" });
