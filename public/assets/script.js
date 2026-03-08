@@ -75,6 +75,10 @@ function fetchCategories() {
     .then(categories => {
         const filterSelect = document.getElementById("category-filter");
         const postSelect = document.getElementById("post-category");
+        
+        filterSelect.innerHTML = '<option value="">All</option>';
+        postSelect.innerHTML = '<option value="">Select Category</option>';
+
         categories.forEach(cat =>{
             const filterOption = document.createElement("option");
             filterOption.value = cat.id;
