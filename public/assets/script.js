@@ -39,6 +39,8 @@ function login() {
 
         alert("User Logged In successfully");
 
+        fetchCategories();
+
         // Fetch the posts list
         fetchPosts();
 
@@ -69,12 +71,13 @@ function logout() {
 
 function fetchCategories() {
     fetch("http://localhost:3001/api/categories")
+    .then(res => res.json())
     .then(categories => {
         const select = document.getElementById("category-filter");
         categories.forEach(cat =>{
             const option = document.createElement("option");
             option.value = cat.id;
-            option.text = cat.category-name;
+            option.text = cat.category_name;
             select.appendChild(option);
         });
     })
@@ -84,26 +87,29 @@ function fetchCategories() {
 }
 
 function fetchPosts() {
-  fetch("http://localhost:3001/api/posts", {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((res) => res.json())
-    .then((posts) => {
+  let url = "/api/posts";
+  const categoryId = document.getElementById("category-filter").value;
+  if (categoryId) url += `?categoryId=${categoryId}`;
+
+  fetch(url, { method: "GET", headers: { Authorization: `Bearer ${token}` } })
+    .then(res => res.json())
+    .then(posts => {
       const postsContainer = document.getElementById("posts");
       postsContainer.innerHTML = "";
-      posts.forEach((post) => {
+      posts.forEach(post => {
         const div = document.createElement("div");
         div.innerHTML = `
-        <h3>${post.title}</h3>
-        <p>${post.content}</p>
-        <small>
-            Category: ${post.category.category_name || "None"} <br>
-            By: ${post.postedBy} on ${new Date(post.createdOn).toLocaleString()}
-        </small>
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          <small>By: ${post.postedBy} on ${new Date(post.createdOn).toLocaleString()}</small>
+          <p>Category: ${post.category ? post.category.category_name : 'N/A'}</p>
         `;
         postsContainer.appendChild(div);
       });
+    })
+    .catch(error => {
+      console.log("Error fetching posts:", error);
+      alert("Failed to load posts");
     });
 }
 

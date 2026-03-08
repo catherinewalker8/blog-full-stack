@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
     console.log(categories);
     res.json(categories);
   } catch (error) {
-    res.status(500).json({ message: "Error adding categories", error: error });
+    res.status(500).json({ message: "Error getting categories", error: error });
   }
 });
 
@@ -40,19 +40,19 @@ app.get("/:id", async (req, res) => {
 // Route to update a category
 app.put("/:id", async (req, res) => {
   try {
-    const { name } = req.body;
-    const post = await Category.update(
-      { name },
+    const { category_name } = req.body;
+    const category = await Category.update(
+      { category_name },
       { where: { id: req.params.id } }
     );
-    res.json(post);
+    res.json(category);
   } catch (error) {
     res.status(500).json({ error: "Error updating category" });
   }
 });
 
 // Route to delete a category
-app.delete("//:id", async (req, res) => {
+app.delete("/:id", async (req, res) => {
   try {
     const category = await Category.destroy({ where: { id: req.params.id } });
     res.json(category);

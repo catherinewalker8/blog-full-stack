@@ -26,16 +26,21 @@ app.post("/", authMiddleware, async (req, res) => {
 // Route to get all posts
 app.get("/", async (req, res) => {
   try {
+    const filter = {};
+    if (req.query.categoryId) {
+      filter.categoryId = req.query.categoryId;
+    }
     const posts = await Post.findAll({
-  include: [
-    { model: Category, as: 'category', attributes: ['category_name'] },
-    { model: User, attributes: ['username'] }
-  ]
-});
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ error: "Error retrieving posts", error });
-  }
+      where: filter,
+      include: [
+        { model: Category, as: 'category', attributes: ['category_name'] },
+        { model: User, attributes: ['username'] }
+      ]
+    });
+        res.json(posts);
+      } catch (error) {
+        res.status(500).json({ error: "Error retrieving posts", error });
+      }
 });
 
 app.get("/:id", async (req, res) => {
