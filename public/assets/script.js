@@ -78,11 +78,14 @@ function fetchPosts() {
       postsContainer.innerHTML = "";
       posts.forEach((post) => {
         const div = document.createElement("div");
-        div.innerHTML = `<h3>${post.title}</h3><p>${
-          post.content
-        }</p><small>By: ${post.postedBy} on ${new Date(
-          post.createdOn
-        ).toLocaleString()}</small>`;
+        div.innerHTML = `
+        <h3>${post.title}</h3>
+        <p>${post.content}</p>
+        <small>
+            Category: ${post.category.category_name || "None"} <br>
+            By: ${post.postedBy} on ${new Date(post.createdOn).toLocaleString()}
+        </small>
+        `;
         postsContainer.appendChild(div);
       });
     });
