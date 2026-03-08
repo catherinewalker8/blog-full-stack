@@ -13,9 +13,11 @@ const postData = require("./posts.json");
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  await User.bulkCreate(userData),
-  await Category.bulkCreate(categoryData),
-  await Post.bulkCreate(postData);
+  const { users, categories, posts } = postData;
+
+  await User.bulkCreate(users),
+  await Category.bulkCreate(categories),
+  await Post.bulkCreate(posts);
 
   process.exit(0);
 };
