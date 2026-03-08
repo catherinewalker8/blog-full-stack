@@ -15,9 +15,6 @@ function register() {
         alert(data.errors[0].message);
       } else {
         alert("User registered successfully");
-        document.getElementById("username").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
       }
     })
     .catch((error) => {
@@ -41,9 +38,6 @@ function login() {
         token = data.token;
 
         alert("User Logged In successfully");
-
-        document.getElementById("login-email").value = "";
-        document.getElementById("login-password").value = "";
 
         // Fetch the posts list
         fetchPosts();
@@ -100,19 +94,27 @@ function fetchPosts() {
 function createPost() {
   const title = document.getElementById("post-title").value;
   const content = document.getElementById("post-content").value;
+  const categoryName = document.getElementById("post-category").value;
+
+ if (!title || !content || !categoryName) {
+    alert("Please fill in title, content, and category.");
+    return;
+  }
+
   fetch("http://localhost:3001/api/posts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, content, categoryName: "Cats"}),
+    body: JSON.stringify({ title, content, categoryName}),
   })
     .then((res) => res.json())
     .then(() => {
         alert("Post created successfully");
         document.getElementById("post-title").value = "";
         document.getElementById("post-content").value = "";
+        document.getElementById("post-category").value = "";
       fetchPosts();
     });
 }
