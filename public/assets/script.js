@@ -1,10 +1,12 @@
 let token = localStorage.getItem("authToken");
 
+const API_URL = "https://blog-full-stack-co1v.onrender.com/api"
+
 function register() {
   const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  fetch("http://localhost:3001/api/users", {
+  fetch(`${API_URL}/users`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, email, password }),
@@ -25,7 +27,7 @@ function register() {
 function login() {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
-  fetch("http://localhost:3001/api/users/login", {
+  fetch(`${API_URL}/users/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -57,7 +59,7 @@ function login() {
 }
 
 function logout() {
-  fetch("http://localhost:3001/api/users/logout", {
+  fetch(`${API_URL}/users/logout`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
   }).then(() => {
@@ -70,7 +72,7 @@ function logout() {
 }
 
 function fetchCategories() {
-    fetch("http://localhost:3001/api/categories")
+    fetch(`${API_URL}/categories`)
     .then(res => res.json())
     .then(categories => {
         const filterSelect = document.getElementById("category-filter");
@@ -97,7 +99,7 @@ function fetchCategories() {
 }
 
 function fetchPosts() {
-  let url = "/api/posts";
+  let url = `${API_URL}/posts`;
   const categoryId = document.getElementById("category-filter").value;
   if (categoryId) url += `?categoryId=${categoryId}`;
 
@@ -133,7 +135,7 @@ function createPost() {
     return;
   }
 
-  fetch("http://localhost:3001/api/posts", {
+  fetch(`${API_URL}/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
