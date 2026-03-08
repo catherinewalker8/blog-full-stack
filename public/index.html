@@ -32,9 +32,9 @@
                 <button class="btn btn-primary w-100" type="button" onclick="register()">Register</button>
                 <hr>
                 <h2>Login</h2>
-                <input class="form-control" type="email" id="login-email" placeholder="Email">
-                <input class="form-control" type="password" id="login-password" placeholder="Password">
-                <button class="btn" type="button" onclick="login()">Login</button>
+                <input class="form-control mb-2" type="email" id="login-email" placeholder="Email">
+                <input class="form-control mb-2" type="password" id="login-password" placeholder="Password">
+                <button class="btn btn-primary w-100" type="button" onclick="login()">Login</button>
             </div>
         </div>
     </div>
@@ -62,7 +62,9 @@
                     <h2>Create a Post</h2>
                     <input class="form-control mb-2" type="text" id="post-title" placeholder="Title">
                     <textarea class="form-control mb-2" id="post-content" placeholder="Content"></textarea>
-                    <input class="form-control mb-3" type="text" id="post-category" placeholder="Category">
+                    <select class="form-control mb-2" id="post-category">
+                        <option value="">Select Category</option>
+                    </select>
                     <button class="btn btn-primary w-100" type="button" onclick="createPost()">Submit Post</button>
                 </div>
             </div>

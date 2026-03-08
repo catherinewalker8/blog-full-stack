@@ -9,12 +9,8 @@ const { authMiddleware } = require("../utils/auth");
 // Route to add a new post
 app.post("/", authMiddleware, async (req, res) => {
   try {
-    const { title, content, categoryName} = req.body;
-    const [category] = await Category.findOrCreate({
-      where: { category_name: categoryName }
-    });
-    const post = await Post.create({title, content,
-        categoryId: category.id,
+    const { title, content, categoryId} = req.body;
+    const post = await Post.create({title, content, categoryId,
         postedBy: req.user.username, 
         userId: req.user.id});
     res.status(201).json(post);

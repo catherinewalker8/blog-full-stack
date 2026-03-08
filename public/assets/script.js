@@ -73,12 +73,18 @@ function fetchCategories() {
     fetch("http://localhost:3001/api/categories")
     .then(res => res.json())
     .then(categories => {
-        const select = document.getElementById("category-filter");
+        const filterSelect = document.getElementById("category-filter");
+        const postSelect = document.getElementById("post-category");
         categories.forEach(cat =>{
-            const option = document.createElement("option");
-            option.value = cat.id;
-            option.text = cat.category_name;
-            select.appendChild(option);
+            const filterOption = document.createElement("option");
+            filterOption.value = cat.id;
+            filterOption.textContent = cat.category_name;
+            filterSelect.appendChild(filterOption);
+
+            const postOption = document.createElement("option");
+            postOption.value = cat.id;
+            postOption.textContent = cat.category_name;
+            postSelect.appendChild(postOption);
         });
     })
     .catch((error) => {
@@ -116,7 +122,7 @@ function fetchPosts() {
 function createPost() {
   const title = document.getElementById("post-title").value;
   const content = document.getElementById("post-content").value;
-  const categoryName = document.getElementById("post-category").value;
+  const categoryId = document.getElementById("post-category").value;
 
  if (!title || !content || !categoryName) {
     alert("Please fill in title, content, and category.");
@@ -129,7 +135,7 @@ function createPost() {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, content, categoryName}),
+    body: JSON.stringify({ title, content, categoryId}),
   })
     .then((res) => res.json())
     .then(() => {
