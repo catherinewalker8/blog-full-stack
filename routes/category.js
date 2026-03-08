@@ -30,7 +30,7 @@ app.get("/", async (req, res) => {
 
 app.get("/:id", async (req, res) => {
   try {
-    const category = await Post.findByPk(req.params.id);
+    const category = await Category.findByPk(req.params.id);
     res.json(category);
   } catch (error) {
     res.status(500).json({ error: "Error retrieving category" });
