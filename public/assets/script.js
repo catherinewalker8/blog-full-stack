@@ -15,6 +15,9 @@ function register() {
         alert(data.errors[0].message);
       } else {
         alert("User registered successfully");
+        document.getElementById("username").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
       }
     })
     .catch((error) => {
@@ -38,6 +41,9 @@ function login() {
         token = data.token;
 
         alert("User Logged In successfully");
+
+        document.getElementById("login-email").value = "";
+        document.getElementById("login-password").value = "";
 
         // Fetch the posts list
         fetchPosts();
@@ -104,7 +110,9 @@ function createPost() {
   })
     .then((res) => res.json())
     .then(() => {
-      alert("Post created successfully");
+        alert("Post created successfully");
+        document.getElementById("post-title").value = "";
+        document.getElementById("post-content").value = "";
       fetchPosts();
     });
 }
