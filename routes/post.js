@@ -2,7 +2,7 @@
 const app = require("express").Router();
 
 // import the models
-const { Post , Category} = require("../models/index");
+const { Post , Category, User} = require("../models/index");
 
 const { authMiddleware } = require("../utils/auth");
 
