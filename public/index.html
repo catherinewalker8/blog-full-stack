@@ -5,42 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body>
-    <div class="container" id="auth-container">
-        <h2>Register</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="register()">Register</button>
-        <hr>
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email">
-        <input type="password" id="login-password" placeholder="Password">
-        <button onclick="login()">Login</button>
+
+    <div class="container", id="auth-container">
+        <div class="row">
+            <div class="col-6">
+                <div class="jumbotron">
+                    <h1 class="display-4">All About Pets</h1>
+                    <p class="lead">
+                        Welcome to the ultimate pet blog. Share tips and information with other pet owners and animal enthusiasts!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <h2>Register</h2>
+            <input class="form-control" type="username" id="username" placeholder="Username">
+            <input class="form-control" type="email" id="email" placeholder="Email">
+            <input class="form-control" type="password" id="password" placeholder="Password">
+            <button class="btn" type="button" onclick="register()">Register</button>
+            <hr>
+            <h2>Login</h2>
+            <input class="form-control" type="email" id="login-email" placeholder="Email">
+            <input class="form-control" type="password" id="login-password" placeholder="Password">
+            <button class="btn" type="button" onclick="login()">Login</button>
+        </div>
     </div>
 
     <div class="container hidden" id="app-container">
-        <h2>Welcome</h2>
-        <button onclick="logout()">Logout</button>
-        <hr>
-        <h2>Create a Post</h2>
-        <input type="text" id="post-title" placeholder="Title">
-        <textarea id="post-content" placeholder="Content"></textarea>
-        <input type="text" id="post-category" placeholder="Category">
-        <button onclick="createPost()">Submit Post</button>
-        <hr>
-        <h2>Posts</h2>
-        <h2>Filter by Category</h2>
-        <select name="category" id="category-filter" onchange="fetchPosts()">
-            <option value="">All</option>
-        </select>
-        <div id="posts"></div>
+        <div class="row d-flex justify-content-between align-items-center">
+            <div class="col">
+                <div class="jumbotron">
+                    <h1 class="display-4">All About Pets</h1>
+                    <p class="lead">
+                        Welcome to the ultimate pet blog. Share tips and information with other pet owners and animal enthusiasts!
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="my-auto">
+                    <button class="btn" type="button" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form">
+            <h2>Create a Post</h2>
+            <input class="form-control" type="text" id="post-title" placeholder="Title">
+            <textarea class="form-control" id="post-content" placeholder="Content"></textarea>
+            <input class="form-control" type="text" id="post-category" placeholder="Category">
+            <button class="btn" type="button" onclick="createPost()">Submit Post</button>
+        </div>
+
+        <div class="content">
+            <h2>Posts</h2>
+            <h2>Filter by Category</h2>
+            <select class="form-control" name="category" id="category-filter" onchange="fetchPosts()">
+                <option value="">All</option>
+            </select>
+            <div id="posts"></div>
+        </div>
+
     </div>
 
     <script src="./assets/script.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>
