@@ -67,6 +67,22 @@ function logout() {
   });
 }
 
+function fetchCategories() {
+    fetch("http://localhost:3001/api/categories")
+    .then(categories => {
+        const select = document.getElementById("category-filter");
+        categories.forEach(cat =>{
+            const option = document.createElement("option");
+            option.value = cat.id;
+            option.text = cat.category-name;
+            select.appendChild(option);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
 function fetchPosts() {
   fetch("http://localhost:3001/api/posts", {
     method: "GET",
