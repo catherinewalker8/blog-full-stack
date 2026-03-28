@@ -1,19 +1,16 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "zookeeper",
       "email": "zoo1@example.com",
       "password": "password123"
     },
     {
-      "id": 2,
       "username": "catlover",
       "email": "catlover@example.com",
       "password": "password123"
     },
     {
-      "id": 3,
       "username": "dogfan",
       "email": "dogfan@example.com",
       "password": "password123"
@@ -21,16 +18,15 @@
   ],
 
   "categories": [
-    { "id": 1, "category_name": "Cats" },
-    { "id": 2, "category_name": "Dogs" },
-    { "id": 3, "category_name": "Birds" },
-    { "id": 4, "category_name": "Aquatic" },
-    { "id": 5, "category_name": "Exotic" }
+    { "category_name": "Cats" },
+    { "category_name": "Dogs" },
+    { "category_name": "Birds" },
+    { "category_name": "Aquatic" },
+    { "category_name": "Exotic" }
   ],
 
   "posts": [
     {
-      "id": 1,
       "title": "Why Cats Knead",
       "content": "Cats knead to mark territory and feel comforted.",
       "postedBy": "catlover",
@@ -39,7 +35,6 @@
       "createdOn": "2026-03-08T09:00:00Z"
     },
     {
-      "id": 2,
       "title": "Best Dog Breeds for Families",
       "content": "Golden Retrievers and Labradors are excellent family dogs.",
       "postedBy": "dogfan",
@@ -48,7 +43,6 @@
       "createdOn": "2026-03-07T14:30:00Z"
     },
     {
-      "id": 3,
       "title": "Colorful Parrots",
       "content": "Parrots are intelligent birds known for mimicking sounds.",
       "postedBy": "zookeeper",
@@ -57,7 +51,6 @@
       "createdOn": "2026-03-06T11:15:00Z"
     },
     {
-      "id": 4,
       "title": "Caring for Tropical Fish",
       "content": "Aquatic tanks need proper filtration and temperature control.",
       "postedBy": "zookeeper",
@@ -66,7 +59,6 @@
       "createdOn": "2026-03-05T16:45:00Z"
     },
     {
-      "id": 5,
       "title": "Exotic Reptiles as Pets",
       "content": "Bearded dragons and geckos make fascinating pets.",
       "postedBy": "dogfan",
@@ -75,7 +67,6 @@
       "createdOn": "2026-03-04T08:20:00Z"
     },
     {
-      "id": 6,
       "title": "Training Your Kitten",
       "content": "Use positive reinforcement and patience when training kittens.",
       "postedBy": "catlover",
@@ -84,7 +75,6 @@
       "createdOn": "2026-03-03T12:10:00Z"
     },
     {
-      "id": 7,
       "title": "Dog Nutrition Tips",
       "content": "Feed dogs a balanced diet and avoid toxic foods like chocolate.",
       "postedBy": "dogfan",
@@ -93,7 +83,6 @@
       "createdOn": "2026-03-02T09:50:00Z"
     },
     {
-      "id": 8,
       "title": "Parrot Cage Essentials",
       "content": "Include perches, toys, and clean water for your parrot.",
       "postedBy": "zookeeper",
